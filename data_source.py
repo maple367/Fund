@@ -97,5 +97,5 @@ class FundData:
         return df
 
 if __name__ == '__main__':
-    fund_data = FundData('000001', '2024-12-01', '2025-01-30')
+    fund_data = FundData('019548', '2024-01-01', '2025-01-01')
     update_fund_list()

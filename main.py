@@ -60,12 +60,12 @@ class Period(invest_method):
                 cost += day_input
             self.states.append({'date':day[0], 'cash': self.current_cash, 'share': self.current_share, 'total_value': self.current_cash + self.current_share*day[1], 'unit_net_value': day[1]})
 
-fund_code = '002963'
-fund_data = FundData(fund_code, '2020-01-01', '2025-01-01')
+fund_code = '006479'
+fund_data = FundData(fund_code, '2021-01-01', '2025-01-01')
 fund_data_set = fund_data.data
 fund_detail = fund_data._data_['detail']
 print(fund_detail)
-start_time = np.datetime64('2020-01-01')
+start_time = np.datetime64('2021-01-01')
 time_series = np.arange(start_time, start_time+np.timedelta64(365*4, 'D'), np.timedelta64(15, 'D'))
 res = []
 for start_time in time_series:
