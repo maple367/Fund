@@ -61,7 +61,10 @@ class Period(invest_method):
             self.states.append({'date':day[0], 'cash': self.current_cash, 'share': self.current_share, 'total_value': self.current_cash + self.current_share*day[1], 'unit_net_value': day[1]})
 
 fund_code = '002963'
-fund_data_set = FundData(fund_code, '2020-01-01', '2025-01-01').data
+fund_data = FundData(fund_code, '2020-01-01', '2025-01-01')
+fund_data_set = fund_data.data
+fund_detail = fund_data._data_['detail']
+print(fund_detail)
 start_time = np.datetime64('2020-01-01')
 time_series = np.arange(start_time, start_time+np.timedelta64(365*4, 'D'), np.timedelta64(15, 'D'))
 res = []
@@ -79,7 +82,7 @@ for start_time in time_series:
 
 import matplotlib.pyplot as plt
 plt.figure(dpi=300, figsize=(10,6))
-plt.title(fund_code)
+plt.title(f'{fund_code} {fund_detail["name3"].values[0]}')
 plt.plot(time_series, res, label=['Target Smart', 'All In', 'Period'])
 plt.legend()
 plt.savefig(f'./res_{fund_code}.png')

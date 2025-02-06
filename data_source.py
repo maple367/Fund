@@ -43,7 +43,9 @@ class FundData:
             "edate": edata,
             "per": 20,
         }
-        self._data_ = {'info': self.params}
+        fund_list = pd.read_csv('./fund_list.csv', dtype={'code':str})
+        detail = fund_list[fund_list['code']==code]
+        self._data_ = {'info': self.params, 'detail': detail}
         self._request_page_(1).join()
         self.data = self._get_data_(self._data_[1])
 
@@ -96,5 +98,4 @@ class FundData:
 
 if __name__ == '__main__':
     fund_data = FundData('000001', '2024-12-01', '2025-01-30')
-    print(fund_data.data)
     update_fund_list()
