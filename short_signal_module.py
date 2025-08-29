@@ -46,8 +46,8 @@ def rolling_zscore(s, win=60):
 # =====================
 
 def generate_signals(df,
-                     vol_multiplier=1.5,
-                     donchian_n=20,
+                     vol_multiplier=1.8,
+                     donchian_n=15,
                      atr_n=14,
                      rsi_n=14,
                      z_win=60,
@@ -59,8 +59,8 @@ def generate_signals(df,
     Returns df with columns: EMA5, EMA20, RSI, ATR, VWAP, signal (1/0), etc.
     '''
     df = df.copy()
-    df['EMA5'] = ema(df['close'], 5)
-    df['EMA20'] = ema(df['close'], 20)
+    df['EMA5'] = ema(df['close'], 5*48)  # 5 periods of 5min in a trading day
+    df['EMA20'] = ema(df['close'], 20*48) # 20 periods of 5min in a trading day
     df['RSI'] = rsi(df['close'], rsi_n)
     df['ATR'] = atr(df, atr_n)
     df['VWAP'] = intraday_vwap(df)
@@ -138,7 +138,7 @@ def apply_t1_exits(df, max_hold_days=2,
                 risk_capital = capital * risk_fraction
                 # 防止 ATR 为 0
                 denom = max(atr_entry * sl_atr, 1e-9)
-                shares = int(max(1, floor(risk_capital / denom)))
+                shares = min(int(max(1, floor(risk_capital / denom))), int(floor(capital / (entry_price*(1+COMMISSION)))))
                 df.at[idx, 'position'] = 1
                 df.at[idx, 'entry_price'] = entry_price
                 df.at[idx, 'shares'] = shares
