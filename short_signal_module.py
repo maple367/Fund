@@ -61,8 +61,8 @@ def generate_signals(df,
     df = df.copy()
     df['EMA5'] = ema(df['close'], 5*48)  # 5 periods of 5min in a trading day
     df['EMA20'] = ema(df['close'], 20*48) # 20 periods of 5min in a trading day
-    df['RSI'] = rsi(df['close'], rsi_n)
-    df['ATR'] = atr(df, atr_n)
+    df['RSI'] = rsi(df['close'], rsi_n*48)
+    df['ATR'] = atr(df, atr_n*48)
     df['VWAP'] = intraday_vwap(df)
     df['dist_vwap'] = (df['close'] - df['VWAP']).abs()
     df['z_dist'] = rolling_zscore(df['dist_vwap'], z_win)
