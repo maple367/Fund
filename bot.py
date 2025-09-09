@@ -3,7 +3,9 @@ import json
 
 import telebot
 
-bot = telebot.TeleBot("8266186650:AAHXszX_uSwNh3TGtFigsNhAAUk5yvcAnTE")
+bot_token = open("bot.token", "r", encoding="utf-8").read().strip()
+print("Bot Token:", bot_token)
+bot = telebot.TeleBot(bot_token)
 
 # Subscription management
 
