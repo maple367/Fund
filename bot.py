@@ -40,14 +40,7 @@ def send_help(message):
         "/subscribe <symbol> - Subscribe to updates for a stock symbol\n"
         "/unsubscribe <symbol> - Unsubscribe from updates for a stock symbol\n"
         "/price <symbol> - Get the current price of the stock symbol\n"
-        "/1m <symbol> - Get 1 minute interval stock data\n"
-        "/5m <symbol> - Get 5 minute interval stock data\n"
-        "/15m <symbol> - Get 15 minute interval stock data\n"
-        "/30m <symbol> - Get 30 minute interval stock data\n"
-        "/60m <symbol> - Get 60 minute interval stock data\n"
-        "/1d <symbol> - Get daily stock data\n"
-        "/1w <symbol> - Get weekly stock data\n"
-        "/1M <symbol> - Get monthly stock data\n"
+        "/id - Get your user ID\n"
         "You can also send any message and I will echo it back!"
     )
     bot.reply_to(message, help_text)
