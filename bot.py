@@ -61,6 +61,11 @@ def get_stock_price(symbol):
     price = get_price(symbol, frequency='1m', count=1)['close'].values[0]
     return f"The current price of {symbol} is {price}"
 
+@bot.message_handler(commands=['id'])
+def send_user_id(message):
+    user_id = message.from_user.id
+    bot.reply_to(message, f"Your user ID is: {user_id}")
+
 @bot.message_handler(commands=['subscribe'])
 def subscribe_stock(message):
     user_id = str(message.from_user.id)
