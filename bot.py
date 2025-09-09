@@ -1,6 +1,11 @@
-import os
+# bot.py
 import json
+import threading
+import time
+from datetime import datetime, timedelta, timezone
 
+import pandas as pd
+import numpy as np
 import telebot
 
 bot_token = open("bot.token", "r", encoding="utf-8").read().strip()
@@ -104,13 +109,6 @@ def echo_all(message):
     bot.reply_to(message, message.text)
 
 # Check RSI and notify users (Placeholder implementation)
-# ===== 新增：依赖与全局 =====
-import threading
-import time
-from datetime import datetime, timedelta, timezone
-
-import pandas as pd
-import numpy as np
 
 # 24小时去重窗口：同一用户-股票的RSI告警在该窗口内只发一次
 ALERT_DEDUP_WINDOW = timedelta(hours=24)
